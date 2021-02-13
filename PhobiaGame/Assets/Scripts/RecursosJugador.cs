@@ -2,31 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class RecursosJugador : MonoBehaviour
 {
-    //Valor de los contadores durante la partida
-    public float vida_actual;
-    public float hambre_actual;
-    public float ansiedad_actual;
-    public float pilaLinterna_actual;
-
-    //Valor máximo de los contadores
-    private float hambre_max = 100f;
+    //Variables para la vida
     private float vida_max = 100f;
-    private float ansiedad_max = 100f;
-    private float pilaLinterna_max = 20f;
+    public float vida_actual;
+    public BarraCanvas barraVida;
 
-    //Intervalos de tiempo en los que cada contador resta valor
+    //Variables para el hambre
+    private float hambre_max = 100f;
+    public float hambre_actual;
     private int intervalo_hambre = 3;
+    public BarraCanvas barraHambre;
+
+    //Variables para la ansiedad (si la implementamos)
+    private float ansiedad_max = 100f;
+    public float ansiedad_actual;
     private int intervalo_ansiedad = 3;
+
+    //Variables para la linterna
+    private float pilaLinterna_max = 20f;
+    public float pilaLinterna_actual;
     private int intervalo_pilaLinterna = 3;
+    ControlLinterna linterna;
+    public BarraCanvas barraLinterna;
 
     //Contador de tiempo
     private float contadorTiempo;
     private int contadorSegundos;
-
-    //Código para la pila
-    ControlLinterna linterna;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -40,6 +45,9 @@ public class RecursosJugador : MonoBehaviour
         contadorSegundos = 0;
 
         linterna = GetComponentInChildren<ControlLinterna>();
+        barraVida.Inicializar(vida_max, vida_actual);
+        barraHambre.Inicializar(hambre_max, hambre_actual);
+        barraLinterna.Inicializar(pilaLinterna_max, pilaLinterna_actual);
 
     }
 
@@ -68,6 +76,7 @@ public class RecursosJugador : MonoBehaviour
     void DescontarHambre(float intro)
     {
         hambre_actual -= intro;
+        barraHambre.SetValor(hambre_actual);
         if(hambre_actual <= 0f)
             Debug.Log("Has muerto de hambre");
     }
@@ -75,6 +84,7 @@ public class RecursosJugador : MonoBehaviour
     void DescontarLinterna(float intro)
     {
         pilaLinterna_actual -= intro;
+        barraLinterna.SetValor(pilaLinterna_actual);
         if(pilaLinterna_actual <= 0f) linterna.Apagar();
     }
 }
