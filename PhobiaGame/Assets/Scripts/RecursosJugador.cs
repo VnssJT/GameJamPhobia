@@ -14,7 +14,7 @@ public class RecursosJugador : MonoBehaviour
     private float hambre_max = 100f;
     private float vida_max = 100f;
     private float ansiedad_max = 100f;
-    private float pilaLinterna_max = 100f;
+    private float pilaLinterna_max = 20f;
 
     //Intervalos de tiempo en los que cada contador resta valor
     private int intervalo_hambre = 3;
@@ -25,15 +25,21 @@ public class RecursosJugador : MonoBehaviour
     private float contadorTiempo;
     private int contadorSegundos;
 
+    //Código para la pila
+    ControlLinterna linterna;
+
     // Start is called before the first frame update
     void Start()
     {
         vida_actual = vida_max;
         hambre_actual = hambre_max;
         ansiedad_actual = ansiedad_max;
+        pilaLinterna_actual = pilaLinterna_max;
 
         contadorTiempo = 0f;
         contadorSegundos = 0;
+
+        linterna = GetComponentInChildren<ControlLinterna>();
 
     }
 
@@ -42,9 +48,10 @@ public class RecursosJugador : MonoBehaviour
     {
         contadorTiempo += Time.deltaTime;
         if(contadorTiempo > 1f) contarSegundos();
-        //contadorSegundos = (int)contadorTiempo;
-        //Debug.Log(contadorSegundos);
-        //if(contadorSegundos % intervalo_hambre == 0)  DescontarHambre(2f);
+        
+        //Activar y desactivar Linterna
+        if(Input.GetButtonDown("Fire1") && pilaLinterna_actual > 0f)
+            linterna.interruptor();
     }
 
     void contarSegundos()
@@ -54,12 +61,20 @@ public class RecursosJugador : MonoBehaviour
         //Debug.Log(contadorSegundos);
 
         if(contadorSegundos % intervalo_hambre == 0)  DescontarHambre(2f);
+
+        if(linterna.encendida && contadorSegundos % intervalo_pilaLinterna == 0) DescontarLinterna(2f);
     }
 
     void DescontarHambre(float intro)
     {
         hambre_actual -= intro;
-        if(hambre_actual > 0f)  Debug.Log("Te quedan "+ hambre_actual +" puntos de hambre");
-        else                    Debug.Log("Has muerto de hambre");
+        if(hambre_actual <= 0f)
+            Debug.Log("Has muerto de hambre");
+    }
+
+    void DescontarLinterna(float intro)
+    {
+        pilaLinterna_actual -= intro;
+        if(pilaLinterna_actual <= 0f) linterna.Apagar();
     }
 }

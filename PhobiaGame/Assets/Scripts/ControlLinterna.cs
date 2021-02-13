@@ -6,26 +6,30 @@ public class ControlLinterna : MonoBehaviour
 {
     
     Light luzLinterna;
+    public bool encendida;
 
     void Start()
     {
         luzLinterna = GetComponentInChildren<Light>();
+        Encender();
     }
 
     
-    public void EncenderLinterna()
+    public void Encender()
     {
+        encendida = true;
         luzLinterna.enabled = true;
     }
 
-    public void ApagarLinterna()
+    public void Apagar()
     {
+        encendida = false;
         luzLinterna.enabled = false;
     }
 
-    public void interruptorLinterna()
+    public void interruptor()
     {
-        if(luzLinterna.enabled) ApagarLinterna();
-        else                    EncenderLinterna();
+        if(luzLinterna.enabled) Apagar();
+        else                    Encender();
     }
 }
