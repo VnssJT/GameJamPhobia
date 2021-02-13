@@ -913,7 +913,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 251735102}
-  m_LocalRotation: {x: 0.4157061, y: -0.000000015649192, z: 0.0000000071527997, w: 0.90949905}
+  m_LocalRotation: {x: 0.4157061, y: 0.00000001564918, z: -0.0000000071527957, w: 0.909499}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -932,6 +932,7 @@ GameObject:
   - component: {fileID: 264119591}
   - component: {fileID: 264119593}
   - component: {fileID: 264119592}
+  - component: {fileID: 264119594}
   m_Layer: 0
   m_Name: PersonajeJugador
   m_TagString: Untagged
@@ -988,6 +989,22 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &264119594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 264119590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52faced9a0f8bd84e8e70f265915fe4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vida_actual: 0
+  hambre_actual: 0
+  ansiedad_actual: 0
+  pilaLinterna_actual: 0
 --- !u!1001 &264875571
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2539,7 +2556,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 872774893}
-  m_LocalRotation: {x: 0.38239425, y: -1e-45, z: -0, w: 0.92399925}
+  m_LocalRotation: {x: 0.38239425, y: -1e-45, z: 1e-45, w: 0.92399925}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
